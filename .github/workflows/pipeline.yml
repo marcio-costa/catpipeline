@@ -22,8 +22,10 @@ jobs:
         with:
           aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
           role-session-name: github
+          mask-aws-account-id: false
+          role-skip-session-tagging: true
           aws-region: ${{ env.AWS_REGION }}
-          aws-role-duration-seconds: 3600
+          aws-role-duration-seconds: 900
 
       - name: Start CodeBuild project
         run: aws codebuild start-build --project-name catpipeline-build
