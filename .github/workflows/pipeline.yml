@@ -3,9 +3,12 @@ name: CatPipeline
 on:
   push:
 
+env:
+  AWS_REGION : "us-east-1"
+
 permissions:
-  id-token: write
-  contents: read
+    id-token: write   # This is required for requesting the JWT
+    contents: read    # This is required for actions/checkout
 
 jobs:
   build:
@@ -19,11 +22,11 @@ jobs:
         with:
           aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
           role-session-name: github
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_REGION }}
           aws-role-duration-seconds: 3600
 
       - name: Start CodeBuild project
         run: aws codebuild start-build --project-name catpipeline-build
         env:
-          AWS_DEFAULT_REGION: us-east-1
+          AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
 
