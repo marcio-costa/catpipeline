@@ -1,0 +1,26 @@
+name: CatPipeline
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Assume AWS Role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
+          aws-role-duration-seconds: 3600
+
+      - name: Start CodeBuild project
+        run: aws codebuild start-build --project-name catpipeline-build
+        env:
+          AWS_DEFAULT_REGION: us-east-1
+
