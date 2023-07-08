@@ -17,6 +17,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
+          aws-region: us-east-1
           aws-role-duration-seconds: 3600
 
       - name: Start CodeBuild project
