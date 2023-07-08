@@ -15,14 +15,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Assume AWS Role
-        uses: aws-actions/configure-aws-credentials@v2.2.0
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-role-to-assume: arn:aws:iam::044798518090:role/GHtoAWSRole
-          role-session-name: github
-          mask-aws-account-id: false
-          role-skip-session-tagging: true
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::044798518090:role/GHtoAWSRole
+          role-session-name: MySessionName
+
+      # - name: Assume AWS Role
+      #   uses: aws-actions/configure-aws-credentials@v2.2.0
+      #   with:
+      #     aws-role-to-assume: arn:aws:iam::044798518090:role/GHtoAWSRole
+      #     role-session-name: github
+      #     mask-aws-account-id: false
+      #     role-skip-session-tagging: true
+      #     aws-region: ${{ env.AWS_REGION }}
 
 
       - name: Start CodeBuild project
