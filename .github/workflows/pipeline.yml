@@ -1,7 +1,6 @@
 name: CatPipeline
 
-on:
-  push:
+on: [push]
 
 env:
   AWS_REGION : "us-east-1"
