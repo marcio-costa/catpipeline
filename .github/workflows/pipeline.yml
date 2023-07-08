@@ -20,7 +20,7 @@ jobs:
       - name: Assume AWS Role
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
+          aws-role-to-assume: arn:aws:iam::044798518090:role/github2CodeBuildRole
           role-session-name: github
           mask-aws-account-id: false
           role-skip-session-tagging: true
