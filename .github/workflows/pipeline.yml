@@ -19,6 +19,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-role-to-assume: arn:aws:iam::044798518090:role/GithubOIDCRole
+          role-session-name: github
           aws-region: us-east-1
           aws-role-duration-seconds: 3600
 
